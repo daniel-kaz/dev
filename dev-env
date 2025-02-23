@@ -18,9 +18,9 @@ fi
 
 log() {
     if [[ $dry_run == "1" ]]; then
-        echo "[DRY_RUN]: $1"
+        echo -e "[DRY_RUN]: $1"
     else
-        echo "$1"
+        echo -e "$1"
     fi
 }
 
@@ -33,14 +33,14 @@ update_directory() {
     (
         configs=`find . -mindepth 1 -maxdepth 1 -type d`
         for c in $configs; do
-            directory=${2%/}/{$c#./}
-            log  "removing: rm -rf $directory"
+            directory=${2%/}/${c#./}
+            log  "\tremoving: rm -rf $directory"
 
             if [[ -z $dry_run ]]; then
                 rm -rf $directory
             fi
 
-            log "copying env: cp $c $2"
+            log "\tcopying env: cp $c $2"
             if [[ -z $dry_run ]]; then
                 cp -r ./$c $2
             fi
@@ -52,11 +52,11 @@ update_directory() {
 # Update single file
 update_file() {
     log "removing: $2"
-    if [[ -z dry_run ]]; then
+    if [[ -z $dry_run ]]; then
         rm $2
     fi
     log "copying: $1 to $2"
-    if [[ -z dry_run ]]; then
+    if [[ -z $dry_run ]]; then
        cp $1 $2 
     fi
 
@@ -66,5 +66,9 @@ update_directory $DEV_ENV/env/.config $XDG_CONFIG_HOME
 # idk if i wanna remove everything from .local 
 update_directory $DEV_ENV/env/.local $HOME/.local
 
-update_file $DEV_ENV/env/tmux-sessionizer/tmux-sessionizer $HOME/.local/scripts/tmux-sessionizer
-update_file $DEV_ENV/env/tmux-sessionizer/.workspace_dirs $HOME/.workspace_dirs
+update_file $DEV_ENV/tmux-sessionizer/tmux-sessionizer $HOME/.local/scripts/tmux-sessionizer
+update_file $DEV_ENV/tmux-sessionizer/.workspace_dirs $HOME/.workspace_dirs
+update_file $DEV_ENV/env/.zshrc $HOME/.zshrc
+update_file $DEV_ENV/env/.zsh_profile $HOME/.zsh_profile
+update_file $DEV_ENV/env/.tmux-sessioniser $HOME/.tmux-sessioniser
+update_file $DEV_ENV/dev-env $HOME/.local/scripts/dev-env

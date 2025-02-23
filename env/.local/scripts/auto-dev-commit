@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+if [[ -z $1 ]]; then
+    msg="auto dev commit"
+else 
+    msg=$1
+fi
+
+pushd ~/Documents/dev/env/.config/nvim
+git add .
+git commit -m "$msg"
+git push
+popd
+
+pushd ~/Documents/dev/tmux-sessionizer/
+git add .
+git commit -m "$msg"
+git push
+popd
+
+pushd ~/Documents/dev
+git add .
+git commit -m "$msg"
+git push
+popd

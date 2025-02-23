@@ -1,0 +1,26 @@
+export XDG_CONFIG_HOME=$HOME/.config
+
+VIM="nvim"
+
+alias vim='nvim'
+alias ls='lsd'
+alias ll='ls -alF'
+alias la='ls -a'
+
+
+addToPath() {
+    if [[ $PATH != *"$1"* ]]; then
+        export PATH=$PATH:$1
+    fi
+}
+addToPath $HOME/.local/bin
+addToPath $HOME/.local/scripts
+addToPath $HOME/go/bin
+addToPath /usr/local/go/bin
+addToPath $HOME/.cargo/bin
+addToPath $HOME/.deno/bin
+
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+export PATH=$PATH:$HOME/go/bin
+
+export NVM_DIR="$HOME/.nvm"
