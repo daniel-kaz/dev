@@ -24,3 +24,5 @@ addToPath $HOME/.deno/bin
 export PATH=$PATH:$HOME/go/bin
 
 export NVM_DIR="$HOME/.nvm"
+bindkey -s ^f "tmux-sessionizer\n"
+

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+(
+cd $HOME/Documents/dev
+./dev-env
+hash -r
+)
