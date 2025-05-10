@@ -51,4 +51,5 @@ bindkey "\e[3;5~" delete-word
 bindkey "\e[3;6~" backward-delete-word
 
 export PATH=$PATH:~/Downloads/zig-0.13.0/
-
+# curosr
+export PATH=$PATH:/mnt/c/Users/danie/AppData/Local/Programs/cursor/resources/app/bin/
